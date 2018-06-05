@@ -2,7 +2,7 @@ plot_contours <- function() {
 
   library(reshape2)
   
-  meta_results <- read.delim("meta_results_18_09_16.txt")
+  # meta_results <- read.delim("meta_results_18_09_16.txt")
   combined_results <- meta_results
   
   x <- combined_results$meta_true_sex_cond
