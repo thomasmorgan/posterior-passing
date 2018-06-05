@@ -1,0 +1,32 @@
+## trying new jags binomial model:
+
+# Model is defined as follows
+model{
+ 
+  # Priors  
+  # sd = 1/(0.1)^2 = 100 ~ not very informative
+  
+  b_aT ~ dnorm(0,0.1)
+
+  # The model 
+  # Iterate over every data point we have
+  
+  for(i in 1:nObs){
+    
+    # A deterministic node      
+    z[i] <- b_aT*analysisType[i]
+    x[i] <- ilogit(z[i])   
+    
+    falsePos[i] ~ dbin(x[i],trialNo[i])
+  } 
+  
+  # Lets work out the likelihood
+  # We need to define the binomial distribution
+  # n! / k!(n-k)! = c
+  # c p^k(1-p)^(n-k)
+  
+  c <- logfact(1) - logfact(falsePos) - logfact(1-falsePos)
+  logLike <- sum(c + falsePos*log(x) + (1-falsePos)*log(1-x))
+  
+  
+}
