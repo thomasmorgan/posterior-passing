@@ -2,6 +2,7 @@ plot_contours <- function() {
 
   library(reshape2)
   
+  # un-comment this line to load in the published results
   # meta_results <- read.delim("meta_results_18_09_16.txt")
   combined_results <- meta_results
   
