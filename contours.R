@@ -8,13 +8,16 @@ plot_contours <- function() {
   x <- combined_results$meta_true_sex_cond
   y <- combined_results$meta_var_base
   
+  xvals <- round(1/(1+exp(-b_sex_conds)) - 0.5, 2)
+  yvals <- var_bases
+  
   do_plot <- function(z, m) {
     matrix <- data.frame(x=x, y=y, z=z)
     matrix2 <- acast(matrix, x~y, value.var="z", fun.aggregate=mean)
     filled.contour(matrix2,
-                   x=c(0, 0.12, 0.23, 0.32, 0.38),
-                   y=c(0, 0.25, 0.5, 0.75, 1),
-                   xlim = c(0, 0.38), ylim = c(0, 1), zlim=c(-0.02, 0.5),
+                   x=xvals,
+                   y=yvals,
+                   xlim = c(min(xvals), max(xvals)), ylim = c(min(yvals), max(yvals)), zlim=c(-0.02, 0.5),
                    color.palette = colorRampPalette(c("blue","white","yellow")),
                    xlab="true effect", ylab="variance",
                    main=m)
@@ -40,9 +43,9 @@ plot_contours <- function() {
     matrix <- data.frame(x=x, y=y, z=z)
     matrix2 <- acast(matrix, x~y, value.var="z", fun.aggregate=mean)
     filled.contour(matrix2,
-                   x=c(0, 0.12, 0.23, 0.32, 0.38),
-                   y=c(0, 0.25, 0.5, 0.75, 1),
-                   xlim = c(0, 0.38), ylim = c(0, 1), zlim=c(0, 1),
+                   x=xvals,
+                   y=yvals,
+                   xlim = c(min(xvals), max(xvals)), ylim = c(min(yvals), max(yvals)), zlim=c(0, 1),
                    color.palette = colorRampPalette(c("blue","white","yellow")),
                    xlab="true effect", ylab="variance",
                    main=m)
@@ -68,9 +71,9 @@ plot_contours <- function() {
     matrix <- data.frame(x=x, y=y, z=z)
     matrix2 <- acast(matrix, x~y, value.var="z", fun.aggregate=mean)
     filled.contour(matrix2,
-                   x=c(0, 0.12, 0.23, 0.32, 0.38),
-                   y=c(0, 0.25, 0.5, 0.75, 1),
-                   xlim = c(0, 0.38), ylim = c(0, 1), zlim=c(0, 0.5),
+                   x=xvals,
+                   y=yvals,
+                   xlim = c(min(xvals), max(xvals)), ylim = c(min(yvals), max(yvals)), zlim=c(0, 0.5),
                    color.palette = colorRampPalette(c("blue","white","yellow")),
                    xlab="true effect", ylab="variance",
                    main=m)
@@ -96,9 +99,9 @@ plot_contours <- function() {
     matrix <- data.frame(x=x, y=y, z=z)
     matrix2 <- acast(matrix, x~y, value.var="z", fun.aggregate=mean)
     filled.contour(matrix2,
-                   x=c(0, 0.12, 0.23, 0.32, 0.38),
-                   y=c(0, 0.25, 0.5, 0.75, 1),
-                   xlim = c(0, 0.38), ylim = c(0, 1), zlim=c(-0.1, 0.1),
+                   x=xvals,
+                   y=yvals,
+                   xlim = c(min(xvals), max(xvals)), ylim = c(min(yvals), max(yvals)), zlim=c(-0.1, 0.1),
                    color.palette = colorRampPalette(c("blue","white","yellow")),
                    xlab="true effect", ylab="variance",
                    main=m)
